@@ -84,25 +84,85 @@ public:
         }
     }
 
+    Vehicle operator + (Vehicle vehicleOnTheRightSide)
+    {
+        Vehicle resultingVehicle; 
+        
+        resultingVehicle.cost = this->cost + vehicleOnTheRightSide.cost; 
 
+        resultingVehicle.mileRange = this->mileRange + vehicleOnTheRightSide.mileRange; 
+
+
+        return resultingVehicle; 
+    }
+
+    void print()
+    {
+        cout << mileRange << "\t" << this->cost << endl;
+    };
+
+    bool operator < (Vehicle other)
+    {
+        if (this->cost < other.cost
+            &&
+            this->mileRange < other.mileRange)
+        {
+            return true; 
+        }
+
+        //return (this->cost < other.cost
+        //    &&
+        //    this->mileRange < other.mileRange);
+
+        else
+        {
+            return false;
+        }
+    }
+
+    friend ostream& operator << (ostream& cout, Vehicle vObj);
+        //stream insertion operator (>> -> stream EXTRACTION operator) 
 };
 
 
+ostream& operator << (ostream& cout, Vehicle vObj)
+{
+    cout << vObj.cost << "\t" << vObj.mileRange << endl; 
+
+    return cout; 
+}
+
 int main()
 {
+    //Vehicle v1; 
+    //cin >> v1; 
 
-    Vehicle v1{ 9999.99, 350 };
-    Vehicle v2{ 9999.99, 250 }; 
+    Vehicle camperVan{ 40'000, 300 };
+    Vehicle motorcycle{5'000, 200}; //80 mpg? 
 
-    if (v1 == v2)
-    {
-        cout << "V1 and V2 have the same specs" << endl; 
-    }
+    Vehicle v3 = camperVan + motorcycle;
 
-    else
-    {
-        cout << "NOT the same vehicle" << endl; 
-    }
+    //v3.print();
+    cout << v3 << endl; 
+
+    // 
+    cout << std::boolalpha << (motorcycle < camperVan) << endl; 
+
+    //string s1 = "asdf"; 
+    //string s2 = "123";
+        
+
+    //if (s1 == s2)
+
+    //if (v1 == v2)
+    //{
+    //    cout << "V1 and V2 have the same specs" << endl; 
+    //}
+
+    //else
+    //{
+    //    cout << "NOT the same vehicle" << endl; 
+    //}
     //demoThisClass dtcObject; 
     ////dtcObject.printThis(); 
     ////cout << &dtcObject << endl; 

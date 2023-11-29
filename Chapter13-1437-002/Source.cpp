@@ -122,6 +122,13 @@ public:
 
     friend ostream& operator << (ostream& cout, Vehicle vObj);
         //stream insertion operator (>> -> stream EXTRACTION operator) 
+
+
+    void operator ++()
+    {
+        this->cost = this->cost + 0.01; //add 1 cent to the cost/value
+        mileRange = mileRange + 1; 
+    }
 };
 
 
@@ -137,16 +144,24 @@ int main()
     //Vehicle v1; 
     //cin >> v1; 
 
-    Vehicle camperVan{ 40'000, 300 };
+    //unary operator is an operator that acts on ONE operand
+    //int C = 0; 
+    //C++;
+    //c++; 
+    Vehicle camperVan{ 39'999.99, 300 };
+    ++camperVan; 
+    camperVan.print(); 
+    cout << camperVan << endl; 
+
     Vehicle motorcycle{5'000, 200}; //80 mpg? 
 
     Vehicle v3 = camperVan + motorcycle;
 
     //v3.print();
-    cout << v3 << endl; 
+    //cout << v3 << endl; 
 
     // 
-    cout << std::boolalpha << (motorcycle < camperVan) << endl; 
+    //cout << std::boolalpha << (motorcycle < camperVan) << endl; 
 
     //string s1 = "asdf"; 
     //string s2 = "123";
